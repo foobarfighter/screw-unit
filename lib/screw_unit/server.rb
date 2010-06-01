@@ -1,4 +1,8 @@
-require "selenium"
+begin
+  require "selenium"
+rescue LoadError => e
+  warn "*** selenium load warning: #{e.message}"
+end
 
 module ScrewUnit
   class Server
