@@ -10,7 +10,7 @@ Monarch.constructor("Screw.Interface.Runner", Monarch.View.Template, {
         var runner;
         queue.add(function() {
           var show = jQuery.cookie("__screw_unit__show") || "all";
-          runner = Screw.Interface.Runner.to_view({root: Screw.root_description(), show: show, post_on_completion: true});
+          runner = Screw.Interface.Runner.to_view({root: Screw.root_description(), show: show, post_on_completion: false});
         });
         queue.add(function() {
           Screw.$('body').html(runner);
