@@ -3,6 +3,7 @@
 //= require <jquery.cookie>
 
 //= require "screw/screw"
+//= require "screw/queue"
 //= require "screw/keywords"
 //= require "screw/matchers"
 //= require "screw/context"
