@@ -11,7 +11,7 @@ Monarch.constructor("Screw.Queue", Screw.RunnableMethods, {
   },
 
 	run_next: function(){
-		if (!this.fns.length){ console.debug("end of queue"); return; }
+		if (!this.fns.length){ return; }
 		var fn = this.fns.shift();
 		var self = this;
 

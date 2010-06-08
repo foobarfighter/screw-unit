@@ -41,13 +41,11 @@ Monarch.constructor("Screw.Deferred", {
 		var start = new Date().getTime();
 		self._interval = setInterval(function(){
 			try {
-				console.debug("polling");
 				self.runner();
 				if (new Date().getTime() - start > self.timeout){
 					throw new Error("timeout exceeded");
 				}
 			} catch(e) {
-				console.debug("error caught", e);
 				self.fail(e);
 			}
 		}, 20);
