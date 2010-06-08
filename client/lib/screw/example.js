@@ -43,9 +43,10 @@ Monarch.constructor("Screw.Example", Screw.RunnableMethods, {
 		var self = this;
 
 		var cleanup = function(){
-			self.parent_description.run_afters(example_context);		// TODO: Error handling
+			self.parent_description.run_afters(self.example_context);		// TODO: Error handling
 			Screw.reset_mocks();
 			queue.remove_on_task_complete(self.task_complete_handler);
+			queue.run_next();
 		}
 
 		deferred.on_fail(function(error){
@@ -72,6 +73,7 @@ Monarch.constructor("Screw.Example", Screw.RunnableMethods, {
 			this.report_failed(e);
 		} finally {
 			this.deferred = example_context.deferred;
+			this.example_context = example_context;
 			if (!this.deferred  || !passed){
 				this.parent_description.run_afters(example_context);
 				Screw.reset_mocks();
