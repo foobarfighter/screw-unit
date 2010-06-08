@@ -137,6 +137,31 @@ Screw.Unit(function(c) { with(c) {
           expect(example.passed).to(be_true);
           expect(example.failed).to(be_false);
         });
+
+
+				context("if there are deferred tests", function(){
+					var deferred, queue;
+
+					before(function(){
+						queue = new Screw.Queue();
+						example = new Screw.Example("deferred example", function(){
+							expect(1).to(equal, 1);
+							this.deferred = new Screw.Deferred(function(){ this.succeed_if(true); }, 300);
+							deferred = this.deferred;
+						});
+						example.parent_description = new Screw.Description("parent description");
+					});
+
+					it("calls the deferred handler", function(){
+						mock(example, "handle_deferred");
+						example.run();
+						example.task_complete(queue);
+						expect(example.failed).to(be_false);
+						console.debug(queue, deferred);
+						debugger;
+						expect(example.handle_deferred).to(have_been_called, with_args(queue, deferred));
+					});
+				});
       });
     });
 

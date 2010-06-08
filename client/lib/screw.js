@@ -8,6 +8,7 @@
 //= require "screw/matchers"
 //= require "screw/context"
 //= require "screw/runnable_methods"
+//= require "screw/deferred"
 //= require "screw/description"
 //= require "screw/example"
 //= require "screw/require"
