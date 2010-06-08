@@ -157,8 +157,6 @@ Screw.Unit(function(c) { with(c) {
 						example.run();
 						example.task_complete(queue);
 						expect(example.failed).to(be_false);
-						console.debug(queue, deferred);
-						debugger;
 						expect(example.handle_deferred).to(have_been_called, with_args(queue, deferred));
 					});
 				});
