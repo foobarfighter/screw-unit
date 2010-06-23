@@ -7,6 +7,7 @@ Monarch.constructor("Screw.Deferred", {
 		this.fail_node = new Monarch.SubscriptionNode();
 		this.success_node = new Monarch.SubscriptionNode();
 		this._interval = null;
+    this.last_error = null;
   },
 
 	on_success: function(callback){
@@ -43,7 +44,14 @@ Monarch.constructor("Screw.Deferred", {
 			try {
 				self.runner();
 				if (new Date().getTime() - start > self.timeout){
-					throw new Error("timeout exceeded");
+          var error;
+          if (self.last_error){
+            error = self.last_error;
+            error.message = "timeout exceeded, last error was: " + error.message;
+          } else {
+            error = new Error("timeout exceeded");; 
+          }
+					throw error;
 				}
 			} catch(e) {
 				self.fail(e);
