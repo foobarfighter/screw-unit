@@ -137,7 +137,7 @@ Monarch.module("Screw.Matchers", {
 
   be_undefined: {
     match: function(expected, actual) {
-      return actual == undefined;
+      return actual === undefined;
     },
 
     failure_message: function(expected, actual, not) {
